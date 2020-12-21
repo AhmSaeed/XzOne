@@ -7,23 +7,18 @@ package xzone.views;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
  * FXML Controller class
  *
- * @author khattab
+ * @author Rahma Ayman
  */
-public class SignUpViewController implements Initializable {
+public class SettingController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
-    @FXML
-    public void sendDataByRahma(){
-        
-    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
