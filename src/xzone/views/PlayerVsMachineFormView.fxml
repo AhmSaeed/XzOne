@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER" prefHeight="208.0" prefWidth="600.0" spacing="140.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Downloads/X-Letter.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Downloads/O-Letter.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="206.0" prefHeight="44.0" prefWidth="600.0" spacing="260.0">
+         <children>
+            <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" fx:id="xCB" />
+            <RadioButton fx:id="yCB" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" />
+         </children>
+      </HBox>
+      <VBox alignment="CENTER" layoutY="250.0" prefHeight="150.0" prefWidth="600.0" spacing="30.0">
+         <children>
+            <TextField fx:id="playerNameTF" prefHeight="0.0" prefWidth="480.0" promptText="Enter your name">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <Button fx:id="letsPlayBTN" mnemonicParsing="false" prefHeight="41.0" prefWidth="136.0" style="-fx-background-color: #48dbfb" text="Lets Play" textFill="WHITE">
+               <font>
+                  <Font name="Comic Sans MS" size="18.0" />
+               </font></Button>
+         </children>
+         <padding>
+            <Insets left="60.0" right="60.0" />
+         </padding>
+      </VBox>
+   </children>
+</Pane>
