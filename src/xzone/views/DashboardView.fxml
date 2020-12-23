@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
@@ -15,11 +16,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="488.0" prefWidth="734.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="dashboard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xzone.views.DashboardViewController">
    <left>
       <ToolBar orientation="VERTICAL" prefHeight="505.0" prefWidth="89.0" BorderPane.alignment="CENTER">
          <items>
-            <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black;" text="Home" textAlignment="CENTER">
+            <Button fx:id="homeBtn" contentDisplay="TOP" mnemonicParsing="false" onAction="#home" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black;" text="Home" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -28,7 +29,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="78.0" prefWidth="81.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black;" text="Records" textAlignment="CENTER">
+            <Button fx:id="recordsBtn" contentDisplay="TOP" mnemonicParsing="false" onAction="#records" prefHeight="78.0" prefWidth="81.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black;" text="Records" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -37,7 +38,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="72.0" prefWidth="82.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black;" text="Settings" textAlignment="CENTER">
+            <Button fx:id="settingsBtn" contentDisplay="TOP" mnemonicParsing="false" onAction="#settings" prefHeight="72.0" prefWidth="82.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black;" text="Settings" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="24.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -46,7 +47,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="73.0" prefWidth="84.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black;" text="Help" textAlignment="CENTER">
+            <Button fx:id="helpBtn" contentDisplay="TOP" mnemonicParsing="false" onAction="#help" prefHeight="73.0" prefWidth="84.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black;" text="Help" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="58.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -55,7 +56,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="76.0" prefWidth="84.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black;" text="Logout" textAlignment="CENTER">
+            <Button fx:id="logoutBtn" contentDisplay="TOP" mnemonicParsing="false" onAction="#logout" prefHeight="76.0" prefWidth="84.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black;" text="Logout" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="24.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -112,7 +113,7 @@
       </ToolBar>
    </top>
    <center>
-      <VBox prefHeight="456.0" prefWidth="538.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="body" prefHeight="456.0" prefWidth="538.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER" prefHeight="288.0" prefWidth="649.0" spacing="77.0">
                <children>
@@ -120,10 +121,13 @@
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../Assets/circle-cropped.png" />
+                              <Image url="@../../Assets/playerVsComputer.png" />
                            </image>
                         </ImageView>
-                        <RadioButton mnemonicParsing="false" text="Player Vs Machine" />
+                        <RadioButton fx:id="playerVsMachine" mnemonicParsing="false" text="Player Vs Machine">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="playingMode" />
+                           </toggleGroup></RadioButton>
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" layoutX="691.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
@@ -133,24 +137,24 @@
                               <Image url="@../../Assets/circle-cropped.png" />
                            </image>
                         </ImageView>
-                        <RadioButton mnemonicParsing="false" text="Multiple Players" />
+                        <RadioButton fx:id="local" mnemonicParsing="false" text="Multiple Players" toggleGroup="$playingMode" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" layoutX="768.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../Assets/circle-cropped.png" />
+                              <Image url="@../../Assets/playerVsplayerOnline.png" />
                            </image>
                         </ImageView>
-                        <RadioButton mnemonicParsing="false" text="Oline" />
+                        <RadioButton fx:id="online" mnemonicParsing="false" text="Online" toggleGroup="$playingMode" />
                      </children>
                   </VBox>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="116.0" prefWidth="538.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="58.0" prefWidth="114.0" style="-fx-background-color: Transparet; -fx-border-color: #0abde3; -fx-border-width: 2px; -fx-border-radius: 5px;" text="Lets Play" />
+                  <Button fx:id="letsPlayBtn" mnemonicParsing="false" onAction="#loadGamePlay" prefHeight="58.0" prefWidth="114.0" style="-fx-background-color: transparent; -fx-border-color: #0abde3; -fx-border-width: 2px; -fx-border-radius: 5px;" text="Lets Play" />
                </children>
             </HBox>
          </children>

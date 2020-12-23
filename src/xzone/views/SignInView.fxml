@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="765.0" prefWidth="544.0" spacing="31.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="456.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="27.0">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="22.0">
          <children>
-            <ImageView fitHeight="243.0" fitWidth="254.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="135.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../Assets/loginAvatar.png" />
                </image>
@@ -57,15 +57,18 @@
             </VBox>
          </children>
       </VBox>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="544.0" spacing="22.0">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="544.0">
          <children>
-            <Button fx:id="loginBtn" mnemonicParsing="false" prefHeight="62.0" prefWidth="108.0" style="-fx-background-color: transparent; -fx-border-color: #81ecec; -fx-border-radius: 10px; -fx-font-weight: bold; -fx-border-width: 2px; -fx-font-size: 20px;" text="Log In" textFill="#188a8a" />
+            <Button fx:id="loginBtn" mnemonicParsing="false" prefHeight="53.0" prefWidth="96.0" style="-fx-background-color: transparent; -fx-border-color: #81ecec; -fx-border-radius: 10px; -fx-font-weight: bold; -fx-border-width: 2px; -fx-font-size: 20px;" text="Log In" textFill="#188a8a" />
          </children>
          <VBox.margin>
             <Insets bottom="30.0" />
          </VBox.margin>
+         <padding>
+            <Insets top="12.0" />
+         </padding>
       </VBox>
-      <HBox alignment="CENTER" prefHeight="98.0" prefWidth="537.0" spacing="9.0">
+      <HBox alignment="CENTER" prefHeight="77.0" prefWidth="456.0" spacing="9.0">
          <children>
             <Label prefHeight="57.0" prefWidth="196.0" text="Not registered on XzOne yet?" />
             <Label fx:id="signUpLabel" style="-fx-font-weight: bold;" text="Sign Up" textFill="#026f6f">
@@ -80,6 +83,6 @@
       </HBox>
    </children>
    <padding>
-      <Insets top="49.0" />
+      <Insets top="40.0" />
    </padding>
 </VBox>

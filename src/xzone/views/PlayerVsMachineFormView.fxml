@@ -11,18 +11,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xzone.views.PlayerVsMachineFormViewController">
    <children>
+      <HBox alignment="CENTER" prefHeight="44.0" prefWidth="81.0">
+         <padding>
+            <Insets top="14.0" />
+         </padding>
+      </HBox>
       <HBox alignment="CENTER" prefHeight="208.0" prefWidth="600.0" spacing="140.0">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="160.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Downloads/X-Letter.png" />
+                  <Image url="@../../Assets/x_rounded.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="137.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Downloads/O-Letter.png" />
+                  <Image url="@../../Assets/o_rounded.png" />
                </image>
             </ImageView>
          </children>
@@ -40,7 +45,7 @@
                   <Font size="20.0" />
                </font>
             </TextField>
-            <Button fx:id="letsPlayBTN" mnemonicParsing="false" prefHeight="41.0" prefWidth="136.0" style="-fx-background-color: #48dbfb" text="Lets Play" textFill="WHITE">
+            <Button fx:id="playBtn" mnemonicParsing="false" prefHeight="44.0" prefWidth="112.0" style="-fx-background-color: black;" text="Play" textFill="WHITE">
                <font>
                   <Font name="Comic Sans MS" size="18.0" />
                </font></Button>
