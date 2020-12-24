@@ -92,7 +92,7 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <Region prefHeight="41.0" prefWidth="151.0" />
+            <Region prefHeight="30.0" prefWidth="240.0" />
             <Label text="HI, Saeed" />
             <ImageView fitHeight="41.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
