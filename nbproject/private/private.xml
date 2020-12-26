@@ -2,17 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
         <group>
-            <file>file:/C:/Users/khattab/Documents/NetBeansProjects/JavaProject/XzOne/src/xzone/views/DashboardViewController.java</file>
-            <file>file:/C:/Users/khattab/Documents/NetBeansProjects/JavaProject/XzOne/src/xzone/views/HelpView.fxml</file>
-            <file>file:/C:/Users/khattab/Documents/NetBeansProjects/JavaProject/XzOne/src/xzone/views/PlayerVsMachineFormViewController.java</file>
-            <file>file:/C:/Users/khattab/Documents/NetBeansProjects/JavaProject/XzOne/src/xzone/views/ServerConnectionController.java</file>
+            <file>file:/C:/Users/khattab/Documents/NetBeansProjects/JavaProject/XzOne/src/controllers/DashboardController.java</file>
+            <file>file:/C:/Users/khattab/Documents/NetBeansProjects/JavaProject/XzOne/src/controllers/ServerConnectionController.java</file>
+            <file>file:/C:/Users/khattab/Documents/NetBeansProjects/JavaProject/XzOne/nbproject/build-impl.xml</file>
             <file>file:/C:/Users/khattab/Documents/NetBeansProjects/JavaProject/XzOne/src/xzone/XzOne.java</file>
-            <file>file:/C:/Users/khattab/Documents/NetBeansProjects/JavaProject/XzOne/src/xzone/views/DashboardView.fxml</file>
         </group>
-=======
-        <group/>
->>>>>>> e0cf76ab4473070a0be292a7c9dd20e108ebbed6
     </open-files>
 </project-private>
