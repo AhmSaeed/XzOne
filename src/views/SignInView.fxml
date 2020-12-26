@@ -17,7 +17,7 @@
          <children>
             <ImageView fitHeight="135.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Assets/loginAvatar.png" />
+                  <Image url="@../Assets/loginAvatar.png" />
                </image>
             </ImageView>
             <Label text="Welcome Back">

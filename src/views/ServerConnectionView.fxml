@@ -12,7 +12,7 @@
    <children>
       <ImageView fitHeight="198.0" fitWidth="252.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../Assets/serverConnection.jpg" />
+            <Image url="@../Assets/client.png" />
          </image>
       </ImageView>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="43.0">

@@ -22,12 +22,12 @@
          <children>
             <ImageView fitHeight="160.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Assets/x_rounded.png" />
+                  <Image url="@../Assets/x_rounded.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="137.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Assets/o_rounded.png" />
+                  <Image url="@../Assets/o_rounded.png" />
                </image>
             </ImageView>
          </children>
