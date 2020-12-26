@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="456.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="456.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.SignInViewController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="22.0">
          <children>
@@ -59,7 +59,7 @@
       </VBox>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="544.0">
          <children>
-            <Button fx:id="loginBtn" mnemonicParsing="false" prefHeight="53.0" prefWidth="96.0" style="-fx-background-color: transparent; -fx-border-color: #81ecec; -fx-border-radius: 10px; -fx-font-weight: bold; -fx-border-width: 2px; -fx-font-size: 20px;" text="Log In" textFill="#188a8a" />
+            <Button fx:id="loginBtn" mnemonicParsing="false" prefHeight="53.0" prefWidth="96.0" style="-fx-background-color: transparent; -fx-border-color: #81ecec; -fx-border-radius: 10px; -fx-font-weight: bold; -fx-border-width: 2px; -fx-font-size: 20px; -fx-cursor: hand;" text="Log In" textFill="#188a8a" />
          </children>
          <VBox.margin>
             <Insets bottom="30.0" />
@@ -71,11 +71,7 @@
       <HBox alignment="CENTER" prefHeight="77.0" prefWidth="456.0" spacing="9.0">
          <children>
             <Label prefHeight="57.0" prefWidth="196.0" text="Not registered on XzOne yet?" />
-            <Label fx:id="signUpLabel" style="-fx-font-weight: bold;" text="Sign Up" textFill="#026f6f">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Label>
+            <Button fx:id="signUpBtn" mnemonicParsing="false" onAction="#goToSignUP" style="-fx-background-color: transparent; -fx-font-size: 18px; -fx-font-weight: bold; -fx-cursor: hand;" text="Sign Up" />
          </children>
          <padding>
             <Insets bottom="14.0" />
