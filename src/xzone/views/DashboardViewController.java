@@ -67,6 +67,7 @@ public class DashboardViewController implements Initializable {
     @FXML
     private void home(ActionEvent event) {
         homeBtn.setStyle("-fx-background-color:white");
+        changeBtnsBackground(settingsBtn, recordsBtn, helpBtn, logoutBtn);
         dashboard.setCenter(body);
     }
 
@@ -81,7 +82,7 @@ public class DashboardViewController implements Initializable {
     private void settings(ActionEvent event) {
         settingsBtn.setStyle("-fx-background-color:white");
         changeBtnsBackground(homeBtn, recordsBtn, helpBtn, logoutBtn);
-        navigatePages("Setting.fxml");
+        navigatePages("SettingView.fxml");
     }
 
     @FXML
