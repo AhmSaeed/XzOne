@@ -82,14 +82,14 @@ public class DashboardController implements Initializable {
     private void settings(ActionEvent event) {
         settingsBtn.setStyle("-fx-background-color:white");
         changeBtnsBackground(homeBtn, recordsBtn, helpBtn, logoutBtn);
-        navigatePages("SettingView.fxml");
+        navigatePages("/views/SettingView.fxml");
     }
 
     @FXML
     private void help(ActionEvent event) {
         helpBtn.setStyle("-fx-background-color:white");
         changeBtnsBackground(homeBtn, settingsBtn, recordsBtn, logoutBtn);
-        navigatePages("HelpView.fxml");
+        navigatePages("/views/HelpView.fxml");
     }
 
     @FXML
@@ -118,12 +118,12 @@ public class DashboardController implements Initializable {
     @FXML
     private void loadGamePlay(ActionEvent event) {
         if (playerVsMachine.isSelected()) {
-            navigatePages("PlayerVsMachineFormView.fxml");
+            navigatePages("/views/PlayerVsMachineFormView.fxml");
         } else if (local.isSelected()) {
-            navigatePages("PlayerVsPlayerLocalView.fxml");
+            navigatePages("/views/PlayerVsPlayerLocalView.fxml");
         }
         else if (online.isSelected()) {
-            navigatePages("ServerConnectionView.fxml");
+            navigatePages("/views/ServerConnectionView.fxml");
         }
 
     }

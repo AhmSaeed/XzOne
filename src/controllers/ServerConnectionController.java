@@ -40,7 +40,7 @@ public class ServerConnectionController implements Initializable {
     private void connectToServer(ActionEvent event) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("SignInView.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/views/SignInView.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(ServerConnectionController.class.getName()).log(Level.SEVERE, null, ex);
         }
