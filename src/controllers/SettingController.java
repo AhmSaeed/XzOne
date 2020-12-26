@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package xzone.views;
+package controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author Rahma Ayman
  */
-public class PlayerVsPlayerLocalController implements Initializable {
+public class SettingController implements Initializable {
 
     /**
      * Initializes the controller class.

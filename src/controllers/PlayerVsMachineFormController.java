@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package xzone.views;
+package controllers;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,7 +24,7 @@ import javafx.scene.control.TextField;
  *
  * @author khattab
  */
-public class PlayerVsMachineFormViewController implements Initializable {
+public class PlayerVsMachineFormController implements Initializable {
 
     @FXML
     private RadioButton xCB;
@@ -50,7 +50,7 @@ public class PlayerVsMachineFormViewController implements Initializable {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("DashboardView.fxml"));
         } catch (IOException ex) {
-            Logger.getLogger(PlayerVsMachineFormViewController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PlayerVsMachineFormController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         

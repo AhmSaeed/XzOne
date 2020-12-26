@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package xzone.views;
+package controllers;
 
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Root;
 import java.io.IOException;
@@ -28,7 +28,7 @@ import javafx.scene.layout.VBox;
  *
  * @author khattab
  */
-public class DashboardViewController implements Initializable {
+public class DashboardController implements Initializable {
 
     @FXML
     private Button homeBtn;
@@ -104,7 +104,7 @@ public class DashboardViewController implements Initializable {
         try {
             root = FXMLLoader.load(getClass().getResource(page));
         } catch (IOException ex) {
-            Logger.getLogger(DashboardViewController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         dashboard.setCenter(root);
