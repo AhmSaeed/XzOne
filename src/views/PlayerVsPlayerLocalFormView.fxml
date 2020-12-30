@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="374.0" prefWidth="447.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="374.0" prefWidth="447.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PlayerVsPlayerLocalFormController">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
@@ -27,7 +27,8 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </TextField>
-            <Label fx:id="playerYLbl" text="Player Y">
+            <Label fx:id="playerXErrorMessageLbl" alignment="CENTER" prefHeight="17.0" prefWidth="296.0" textFill="RED" />
+            <Label fx:id="playerOLbl" text="Player O">
                <font>
                   <Font size="18.0" />
                </font>
@@ -43,7 +44,8 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </TextField>
-            <Button fx:id="letsPlayBtn" alignment="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="111.0" text="Let's Play">
+            <Label fx:id="playerOErrorMessageLbl" alignment="CENTER" prefHeight="17.0" prefWidth="296.0" textFill="RED" />
+            <Button fx:id="letsPlayBtn" alignment="CENTER" mnemonicParsing="false" onAction="#onLetsPlayPress" prefHeight="46.0" prefWidth="111.0" text="Let's Play">
                <font>
                   <Font size="18.0" />
                </font>

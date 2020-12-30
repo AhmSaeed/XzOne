@@ -120,7 +120,7 @@ public class DashboardController implements Initializable {
         if (playerVsMachine.isSelected()) {
             navigatePages("/views/PlayerVsMachineFormView.fxml");
         } else if (local.isSelected()) {
-            navigatePages("/views/PlayerVsPlayerLocalView.fxml");
+            navigatePages("/views/PlayerVsPlayerLocalFormView.fxml");
         }
         else if (online.isSelected()) {
             navigatePages("/views/ServerConnectionView.fxml");
