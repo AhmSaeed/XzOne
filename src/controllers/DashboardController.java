@@ -75,6 +75,7 @@ public class DashboardController implements Initializable {
     private void records(ActionEvent event) {
         recordsBtn.setStyle("-fx-background-color:white");
         changeBtnsBackground(homeBtn, settingsBtn, helpBtn, logoutBtn);
+        navigatePages("/views/RecordsView.fxml");
 
     }
 

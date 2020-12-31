@@ -5,7 +5,12 @@
  */
 package controllers;
 
+import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.net.ConnectException;
+import java.net.Socket;
+import java.net.SocketException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -33,7 +38,7 @@ public class ServerConnectionController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        new Client();
     }    
 
     @FXML
@@ -48,4 +53,47 @@ public class ServerConnectionController implements Initializable {
         ((BorderPane)connectBtn.getScene().getRoot()).setCenter(root);
     }
     
+}
+
+class Client{
+
+    Socket server;
+    DataInputStream dis;
+    PrintStream ps;
+    
+    public Client(){
+        
+        try {
+            server = new Socket("127.0.0.1", 5005);
+            dis = new DataInputStream(server.getInputStream());
+            ps = new PrintStream(server.getOutputStream());
+            
+            System.out.println("Hello from client");
+            
+            System.out.println(dis.readLine());
+
+        }
+        
+        catch (ConnectException cx){
+            
+            System.out.println("The server is down you can't connect!");
+        }
+        catch (SocketException sx){
+            
+            Logger.getLogger(ServerConnectionController.class.getName()).log(Level.SEVERE, null, sx);
+            
+        }
+        
+        catch (IOException ex) {
+            Logger.getLogger(ServerConnectionController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        
+        
+        
+    }
+
+
+
+
+
 }

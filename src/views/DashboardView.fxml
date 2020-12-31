@@ -154,7 +154,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="116.0" prefWidth="538.0">
                <children>
-                  <Button fx:id="letsPlayBtn" mnemonicParsing="false" onAction="#loadGamePlay" prefHeight="58.0" prefWidth="114.0" style="-fx-background-color: transparent; -fx-border-color: #0abde3; -fx-border-width: 2px; -fx-border-radius: 5px;" text="Lets Play" />
+                  <Button fx:id="letsPlayBtn" mnemonicParsing="false" onAction="#loadGamePlay" prefHeight="58.0" prefWidth="114.0" style="-fx-background-color: transparent; -fx-border-color: #0abde3; -fx-border-width: 2px; -fx-border-radius: 5px; -fx-cursor: hand;" text="Lets Play" />
                </children>
             </HBox>
          </children>
