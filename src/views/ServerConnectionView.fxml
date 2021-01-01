@@ -17,7 +17,7 @@
       </ImageView>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="43.0">
          <children>
-            <TextField prefHeight="47.0" prefWidth="600.0" promptText="Enter server ip address" style="-fx-background-color: transparent; -fx-border-color: #81ecec; -fx-border-width: 3px; -fx-border-radius: 10px;">
+            <TextField fx:id="ipTf" prefHeight="47.0" prefWidth="600.0" promptText="Enter server ip address" style="-fx-background-color: transparent; -fx-border-color: #81ecec; -fx-border-width: 3px; -fx-border-radius: 10px;">
                <font>
                   <Font size="20.0" />
                </font>

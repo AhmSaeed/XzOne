@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignUpController">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
@@ -43,7 +43,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </TextField>
-                              <Label text="Label" />
+                              <Label fx:id="userNameLbl" />
                            </children>
                            <padding>
                               <Insets left="70.0" right="70.0" />
@@ -55,7 +55,7 @@
                                  <font>
                                     <Font size="20.0" />
                                  </font></PasswordField>
-                              <Label text="Label" />
+                              <Label fx:id="passwordLbl" />
                            </children>
                            <padding>
                               <Insets left="70.0" right="70.0" />
@@ -68,7 +68,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </PasswordField>
-                              <Label text="Label" />
+                              <Label fx:id="confirmPasswordLbl" />
                            </children>
                            <padding>
                               <Insets left="70.0" right="70.0" />
@@ -76,7 +76,7 @@
                         </VBox>
                      </children>
                   </VBox>
-                  <Button fx:id="submitBtn" mnemonicParsing="false" prefHeight="111.0" prefWidth="110.0" text="Submit" />
+                  <Button fx:id="submitBtn" mnemonicParsing="false" onAction="#submit" prefHeight="111.0" prefWidth="110.0" text="Submit" />
                   <Region prefHeight="21.0" prefWidth="441.0" />
                </children>
                <padding>

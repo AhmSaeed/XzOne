@@ -34,7 +34,7 @@
                               <Font size="20.0" />
                            </font>
                         </TextField>
-                        <Label text="Label" />
+                        <Label fx:id="userNameLbl" />
                      </children>
                      <padding>
                         <Insets left="70.0" right="70.0" />
@@ -47,7 +47,7 @@
                               <Font size="20.0" />
                            </font>
                         </PasswordField>
-                        <Label text="Label" />
+                        <Label fx:id="passwordLbl" />
                      </children>
                      <padding>
                         <Insets left="70.0" right="70.0" />
@@ -59,7 +59,7 @@
       </VBox>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="544.0">
          <children>
-            <Button fx:id="loginBtn" mnemonicParsing="false" prefHeight="53.0" prefWidth="96.0" style="-fx-background-color: transparent; -fx-border-color: #81ecec; -fx-border-radius: 10px; -fx-font-weight: bold; -fx-border-width: 2px; -fx-font-size: 20px; -fx-cursor: hand;" text="Log In" textFill="#188a8a" />
+            <Button fx:id="loginBtn" mnemonicParsing="false" onAction="#goToAvailablePlayerScreen" prefHeight="53.0" prefWidth="96.0" style="-fx-background-color: transparent; -fx-border-color: #81ecec; -fx-border-radius: 10px; -fx-font-weight: bold; -fx-border-width: 2px; -fx-font-size: 20px; -fx-cursor: hand;" text="Log In" textFill="#188a8a" />
          </children>
          <VBox.margin>
             <Insets bottom="30.0" />

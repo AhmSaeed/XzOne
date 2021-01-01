@@ -22,9 +22,9 @@ public class XzOne extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/views/DashboardView.fxml"));
         
         Scene scene = new Scene(root);
-        
         stage.setScene(scene);
         stage.show();
+        //new Client();
     }
 
     /**
@@ -32,6 +32,7 @@ public class XzOne extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+        new Client();
     }
     
 }

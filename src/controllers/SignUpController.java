@@ -12,20 +12,16 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
-import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import xzone.Client;
 import xzone.Constants;
@@ -33,23 +29,29 @@ import xzone.Constants;
 /**
  * FXML Controller class
  *
- * @author khattab
+ * @author Rahma Ayman
  */
-public class SignInController implements Initializable {
+public class SignUpController implements Initializable {
 
     @FXML
-    private TextField userName;
+    private ImageView registerImgVw;
     @FXML
-    private PasswordField passWord;
-    @FXML
-    private Button loginBtn;
-    @FXML
-    private Button signUpBtn;
+    private Label registerNowLbl;
     @FXML
     private Label userNameLbl;
     @FXML
     private Label passwordLbl;
-    ArrayList<String> information = new ArrayList<String>();
+    @FXML
+    private Label confirmPasswordLbl;
+    @FXML
+    private TextField userNameTf;
+    @FXML
+    private PasswordField passwordTf;
+    @FXML
+    private PasswordField confirmedPasswordTf;
+    @FXML
+    private Button submitBtn;
+    ArrayList<String> information;
 
     /**
      * Initializes the controller class.
@@ -60,65 +62,65 @@ public class SignInController implements Initializable {
     }
 
     @FXML
-    private void goToSignUP(ActionEvent event) {
-        Parent root = null;
-
-        try {
-            root = FXMLLoader.load(getClass().getResource("/views/SignUpView.fxml"));
-        } catch (IOException ex) {
-            Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        ((BorderPane) signUpBtn.getScene().getRoot()).setCenter(root);
-
-    }
-
-    @FXML
-    private void goToAvailablePlayerScreen(ActionEvent event) {
-
+    private void submit(ActionEvent event) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                login();
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                if (Client.isLogged) {
+                register();
+                if (Client.isRegistered) {
                     final Parent root;
                     try {
                         root = FXMLLoader.load(getClass().getResource("/views/AvailablePlayersView.fxml"));
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
-                                ((BorderPane) loginBtn.getScene().getRoot()).setCenter(root);
+                                ((BorderPane) submitBtn.getScene().getRoot()).setCenter(root);
                             }
                         });
                     } catch (IOException ex) {
                         Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
-                }
+               }
+//                else {
+//                    Platform.runLater(() -> {
+//                        userNameLbl.setText("user name is used");
+//                    });
 
+//                }
             }
         }).start();
+
     }
 
-    private void login() {
-        if (userName.getText().equals("") && passWord.getText().equals("")) {
+    private void register() {
+        ArrayList<String> message = new ArrayList<String>();
+        information = new ArrayList<String>();
+        System.out.println("B4" + information);
+        if (userNameTf.getText().equals("") && passwordTf.getText().equals("") && confirmedPasswordTf.getText().equals("")) {
             Platform.runLater(() -> {
                 userNameLbl.setText("enter your name");
                 passwordLbl.setText("enter your password");
+                confirmPasswordLbl.setText("enter your confirmPassword");
             });
+
+        } else if (!confirmedPasswordTf.getText().equals(passwordTf.getText())) {
+            Platform.runLater(() -> {
+                userNameLbl.setText("");
+                passwordLbl.setText("");
+                confirmPasswordLbl.setText("confirmPassword must be as password");
+            });
+
         } else {
             Platform.runLater(() -> {
                 userNameLbl.setText("");
                 passwordLbl.setText("");
+                confirmPasswordLbl.setText("");
             });
-            information.add(Constants.WANT_TO_LOGIN);
-            information.add(userName.getText());
-            information.add(passWord.getText());
+
+            information.add(Constants.WANT_TO_REGISTER);
+            information.add(userNameTf.getText());
+            information.add(passwordTf.getText());
             System.out.println("After" + information);
             try {
                 Client.objectOutputStream.writeObject(information);
