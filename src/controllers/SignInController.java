@@ -86,6 +86,7 @@ public class SignInController implements Initializable {
                     Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 if (Client.isLogged) {
+                    Client.playerName=userName.getText();
                     final Parent root;
                     try {
                         root = FXMLLoader.load(getClass().getResource("/views/AvailablePlayersView.fxml"));

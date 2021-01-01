@@ -30,7 +30,8 @@ public class Client extends Thread {
     public static ObjectOutputStream objectOutputStream;
     public static boolean isRegistered;
     public static boolean isLogged;
-    static DataInputStream dis;
+    public static String playerName;
+    //static DataInputStream dis;
     //static PrintStream ps;
 
     public static boolean connect(String ip) {

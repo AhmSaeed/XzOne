@@ -68,6 +68,7 @@ public class SignUpController implements Initializable {
             public void run() {
                 register();
                 if (Client.isRegistered) {
+                    Client.playerName=userNameTf.getText();
                     final Parent root;
                     try {
                         root = FXMLLoader.load(getClass().getResource("/views/AvailablePlayersView.fxml"));
