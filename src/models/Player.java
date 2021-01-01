@@ -5,92 +5,53 @@
  */
 package models;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Windows
  */
-public class Player {
-    private String playerName;
-    private int totalScore;
-    private int gameScore;
-    private String avatarURI;
-    private int lastX;
-    private int lastY;
-    private char choosenChar;
-    private int randomNum;
+public class Player implements Serializable{
+    private String name;
+    private int score;
+    private int playPiece;
     
-    public Player(){
-        playerName = "";
-        totalScore = 0;
-        gameScore = 0;
-        avatarURI = "";
-        lastX = 0;
-        lastY = 0;
-        choosenChar = 'X';
-        randomNum = 0;
+    public Player(String name){this.name = name;}
+    
+    public Player(String name, int playPiece){
+        this.name = name;
+        this.playPiece = playPiece;
+        this.score = 0;
+        
     }
     
-    public void setPlayerName(String name){
-        this.playerName = name;
+    public void setName(String name){
+        this.name = name;
     }
     
-    public void setTotalScore(int score){
-        this.totalScore = score;
+    public void setScore(int score){
+        this.score = score;
     }
     
-    public void setGameScore(int score){
-        this.gameScore = score;
+    public void setPlayPiece(int score){
+        this.playPiece = score;
     }
     
-    public void setAvatarURI(String uri){
-        this.avatarURI = uri;
+    public String getName() {
+        return name;
+    }
+
+    public int getPlayPiece() {
+        return playPiece;
+    }
+
+    public int getScore() {
+        return score;
     }
     
-    public void setLastX(int x){
-        this.lastX = x;
-    }
-    
-    public void setLastY(int y){
-        this.lastY = y;
-    }
-    
-    public void setChoosenChar(char ch){
-        this.choosenChar = ch;
-    }
-    
-    public void setRandomNum(int randomNum){
-        this.randomNum = randomNum;
-    }
-    
-    public String getPlayerName(){
-        return playerName;
-    }
-    
-    public int getTotalScore(){
-        return totalScore;
-    }
-    
-    public int getGameScore(){
-        return gameScore;
-    }
-    
-    public String getAvatarURI(){
-        return avatarURI;
-    }
-    
-    public int getLastX(){
-        return lastX;
-    }
-    
-    public int getLastY(){
-        return lastY;
-    }
-    
-    public char getChoosenChar(){
-        return choosenChar;
-    }
-    
-    public int getRandomNum(){
-        return randomNum;
+    @Override
+    public String toString(){
+        return "player name is " + this.name + ", with play piece " + 
+                this.playPiece + " and the score is " + this.score;
     }
 }

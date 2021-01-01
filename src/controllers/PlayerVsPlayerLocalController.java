@@ -5,8 +5,12 @@
  */
 package controllers;
 
+import models.NavigationHolder;
 import abstracts.PlayerVSPlayerLocalAbstract;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import javafx.geometry.Insets;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,7 +35,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Player;
-import models.PlayersLocal;
+import models.GameMoves;
 
 /**
  * FXML Controller class
@@ -84,10 +88,11 @@ public class PlayerVsPlayerLocalController extends PlayerVSPlayerLocalAbstract i
     private Button backBTN;
     private BorderPane dashboard;
     private int[][] board = { {0, 0, 0}, {0, 0, 0}, {0, 0, 0} };
-    private Player player1 = new Player();
-    private Player player2 = new Player();
+    private Player player1;
+    private Player player2;
     private int randomPlayerNo;
     private int gameCounter = 0;
+    private GameMoves gameMoves;
 
     /**
      * Initializes the controller class.
@@ -95,17 +100,16 @@ public class PlayerVsPlayerLocalController extends PlayerVSPlayerLocalAbstract i
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        player1.setChoosenChar('X');
-        player2.setChoosenChar('O');
-        player1.setRandomNum(1);
-        player2.setRandomNum(2);
         NavigationHolder navigationHolder = NavigationHolder.getInstance();
-        player1.setPlayerName(navigationHolder.getPlayers().getPlayer1());
-        player2.setPlayerName(navigationHolder.getPlayers().getPlayer2());
-        playerLeftLBL.setText(navigationHolder.getPlayers().getPlayer1());
-        playerRightLBL.setText(navigationHolder.getPlayers().getPlayer2());
-        totalScoreLeftLBL.setText(String.valueOf(player1.getChoosenChar()));
-        totalScoreRightLBL.setText(String.valueOf(player2.getChoosenChar()));
+        gameMoves = new GameMoves();
+        player1 = new Player(navigationHolder.getGameMoves().getPlayerOne().getName());
+        player2 = new Player(navigationHolder.getGameMoves().getPlayerTwo().getName());
+        player1.setPlayPiece(1);
+        player2.setPlayPiece(2);
+        playerLeftLBL.setText(navigationHolder.getGameMoves().getPlayerOne().getName());
+        playerRightLBL.setText(navigationHolder.getGameMoves().getPlayerTwo().getName());
+        totalScoreLeftLBL.setText("X");
+        totalScoreRightLBL.setText("O");
         randomPlayerNo = chooseRandomPlayer(2);
         iterationRightSQ.setVisible(randomPlayerNo == 1);
         iterationLeftSQ.setVisible(randomPlayerNo == 0);
@@ -192,25 +196,26 @@ public class PlayerVsPlayerLocalController extends PlayerVSPlayerLocalAbstract i
         dashboard = ((BorderPane)(((Button)event.getSource()).getScene().getRoot()));
         if(board[x][y] != 0) return;
         if(randomPlayerNo == 0){
-            board[x][y] = player1.getRandomNum();
-            button.setText(String.valueOf(player1.getChoosenChar()));
+            board[x][y] = player1.getPlayPiece();
+            button.setText("X");
         }
         else{
-            board[x][y] = player2.getRandomNum();
-            button.setText(String.valueOf(player2.getChoosenChar()));
+            board[x][y] = player2.getPlayPiece();
+            button.setText("O");
         }
+        gameMoves.addMove(gameMoves.convert2DIndexesTo1D(x, y));
         gameCounter++;
         flipRound();
     }
     
     private void countScore(){
         if(randomPlayerNo == 0){
-            player2.setGameScore(player2.getGameScore() + 1);
-            gameScoreRightLBL.setText(String.valueOf(player2.getGameScore()));
+            player2.setScore(player2.getScore() + 1);
+            gameScoreRightLBL.setText(String.valueOf(player2.getScore()));
         }
         else{
-            player1.setGameScore(player1.getGameScore() + 1);
-            gameScoreLeftLBL.setText(String.valueOf(player1.getGameScore()));
+            player1.setScore(player1.getScore() + 1);
+            gameScoreLeftLBL.setText(String.valueOf(player1.getScore()));
         }
     }
     
@@ -233,13 +238,14 @@ public class PlayerVsPlayerLocalController extends PlayerVSPlayerLocalAbstract i
     
     private void winPopUp(){
         countScore();
+        recordMatch();
         Stage primaryStage = (Stage) mainPe.getScene().getWindow();
     
         VBox winnerRoot = new VBox(5);
         winnerRoot.setMinHeight(5);
         winnerRoot.setMinWidth(5);
         winnerRoot.getChildren().add(new Label());
-        winnerRoot.setStyle("-fx-background-color: #ffffffcc; -fx-border-radius: 50px; -fx-border-width: 2px; -fx-border-color: gray");
+        winnerRoot.setStyle("-fx-background-color: #ffffffcc; -fx-border-radius: 50px; -fx-border-width: 2px; -fx-border-color: #34A3F3");
         winnerRoot.setAlignment(Pos.CENTER);
         winnerRoot.setPadding(new Insets(10, 10, 10, 10));
         
@@ -247,11 +253,11 @@ public class PlayerVsPlayerLocalController extends PlayerVSPlayerLocalAbstract i
         imageView.setFitHeight(170);
         imageView.setFitWidth(170);
         Label youWinLbl = new Label();
-        youWinLbl.setText(randomPlayerNo == 0? player2.getPlayerName() + " Win" : player1.getPlayerName() + " Win");
+        youWinLbl.setText(randomPlayerNo == 0? player2.getName() + " Win" : player1.getName() + " Win");
         Button playAgainButton = new Button("Play Again");
-        playAgainButton.setStyle("-fx-pref-width: 150px; -fx-pref-height: 30px; -fx-background-color: #0abde3");
+        playAgainButton.setStyle("-fx-pref-width: 150px; -fx-pref-height: 30px; -fx-border-color: #34A3F3; -fx-background-color: transparent; -fx-border-radius: 5px; -fx-border-width: 2px");
         Button closeButton = new Button("Close");
-        closeButton.setStyle("-fx-pref-width: 150px; -fx-pref-height: 30px; -fx-background-color: #0abde3");
+        closeButton.setStyle("-fx-pref-width: 150px; -fx-pref-height: 30px; -fx-border-color: #34A3F3; -fx-background-color: transparent; -fx-border-radius: 5px; -fx-border-width: 2px");
         winnerRoot.getChildren().add(imageView);
         winnerRoot.getChildren().add(youWinLbl);
         winnerRoot.getChildren().add(playAgainButton);
@@ -272,19 +278,20 @@ public class PlayerVsPlayerLocalController extends PlayerVSPlayerLocalAbstract i
         
         closeButton.setOnAction(event -> {
             popupStage.hide();
-            navigatePages("/views/HomeView.fxml");
+            navigatePages("/views/PlayerVsPlayerLocalFormView.fxml");
         });
         
     }
     
     private void tiePopUp(){
+        recordMatch();
         Stage primaryStage = (Stage) mainPe.getScene().getWindow();
     
         VBox winnerRoot = new VBox(5);
         winnerRoot.setMinHeight(5);
         winnerRoot.setMinWidth(5);
         winnerRoot.getChildren().add(new Label());
-        winnerRoot.setStyle("-fx-background-color: #ffffffcc; -fx-border-radius: 50px; -fx-border-width: 2px; -fx-border-color: gray");
+        winnerRoot.setStyle("-fx-background-color: #ffffffcc; -fx-border-radius: 50px; -fx-border-width: 2px; -fx-border-color: #34A3F3");
         winnerRoot.setAlignment(Pos.CENTER);
         winnerRoot.setPadding(new Insets(10, 10, 10, 10));
         
@@ -294,9 +301,9 @@ public class PlayerVsPlayerLocalController extends PlayerVSPlayerLocalAbstract i
         Label youWinLbl = new Label();
         youWinLbl.setText("Tie");
         Button playAgainButton = new Button("Play Again");
-        playAgainButton.setStyle("-fx-pref-width: 150px; -fx-pref-height: 30px; -fx-background-color: #0abde3");
+        playAgainButton.setStyle("-fx-pref-width: 150px; -fx-pref-height: 30px; -fx-border-color: #34A3F3; -fx-background-color: transparent; -fx-border-radius: 5px; -fx-border-width: 2px");
         Button closeButton = new Button("Close");
-        closeButton.setStyle("-fx-pref-width: 150px; -fx-pref-height: 30px; -fx-background-color: #0abde3");
+        closeButton.setStyle("-fx-pref-width: 150px; -fx-pref-height: 30px; -fx-border-color: #34A3F3; -fx-background-color: transparent; -fx-border-radius: 5px; -fx-border-width: 2px");
         winnerRoot.getChildren().add(imageView);
         winnerRoot.getChildren().add(youWinLbl);
         winnerRoot.getChildren().add(playAgainButton);
@@ -317,9 +324,32 @@ public class PlayerVsPlayerLocalController extends PlayerVSPlayerLocalAbstract i
         
         closeButton.setOnAction(event -> {
             popupStage.hide();
-            navigatePages("/views/HomeView.fxml");
+            navigatePages("/views/PlayerVsPlayerLocalFormView.fxml");
         });
         
+    }
+    
+    private void recordMatch(){
+	
+	int [] moves = gameMoves.getMoves();
+	int i = 1;
+	for(int move: moves){
+            System.out.println("move from record match: " + i + " ->" +move);
+            i++;
+	}
+	ObjectOutputStream os = null;
+        String fileName = "src\\Records\\" + player1.getName() + "Vs" + player2.getName() + ".txt";
+        FileOutputStream fos;
+        
+        try {
+            fos = new FileOutputStream(fileName);
+            os = new ObjectOutputStream(fos);
+            os.writeObject(gameMoves);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PlayerVsPlayerLocalController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(PlayerVsPlayerLocalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private void navigatePages(String page) {

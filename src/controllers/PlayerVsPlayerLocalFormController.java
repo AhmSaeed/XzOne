@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import models.NavigationHolder;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,7 +21,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import models.PlayersLocal;
+import models.GameMoves;
+import models.Player;
 
 /**
  * FXML Controller class
@@ -32,11 +34,11 @@ public class PlayerVsPlayerLocalFormController implements Initializable {
     @FXML
     private Label playerXLbl;
     @FXML
-    private TextField player1Nametf;
+    private TextField player1NameTf;
     @FXML
     private Label playerOLbl;
     @FXML
-    private TextField plater2NameTf;
+    private TextField player2NameTf;
     @FXML
     private Button letsPlayBtn;
     @FXML
@@ -44,6 +46,8 @@ public class PlayerVsPlayerLocalFormController implements Initializable {
     @FXML
     private Label playerOErrorMessageLbl;
     private BorderPane dashboard;
+    Player player1;
+    Player player2;
 
     /**
      * Initializes the controller class.
@@ -55,25 +59,25 @@ public class PlayerVsPlayerLocalFormController implements Initializable {
     
     @FXML
     private void onLetsPlayPress(ActionEvent event){
-        String player1Name = player1Nametf.getText();
-        String player2Name = plater2NameTf.getText();
+        player1 = new Player(player1NameTf.getText());
+        player2 = new Player(player2NameTf.getText());
         
-        if(notValidPlayerName(player1Name)){
+        if(notValidPlayerName(player1NameTf.getText())){
             playerXErrorMessageLbl.setText("Player X name is empty!");
             return;
         }
         else playerXErrorMessageLbl.setText("");
-        if(notValidPlayerName(player2Name)){
+        if(notValidPlayerName(player2NameTf.getText())){
             playerOErrorMessageLbl.setText("Player O name is empty!");
             return;
         }
         else playerOErrorMessageLbl.setText("");
         
         NavigationHolder navigationHolder = NavigationHolder.getInstance();
-        navigationHolder.setPlayers(new PlayersLocal(player1Name, player2Name));
+        navigationHolder.setPlayers(new GameMoves(player1, player2));
         
         dashboard = ((BorderPane)(((Button)event.getSource()).getScene().getRoot()));
-        navigatePages("/views/XOGameplayView.fxml");
+        navigatePages("/views/XOGameboardView.fxml");
     }
     
     private void navigatePages(String page) {

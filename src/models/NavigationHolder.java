@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package models;
 
-import models.PlayersLocal;
+import models.GameMoves;
 
 /**
  *
  * @author Windows
  */
 public final class NavigationHolder {
-    private PlayersLocal players;
+    private GameMoves gameMoves;
     
     private final static NavigationHolder INSTANCE = new NavigationHolder();
     
@@ -22,11 +22,11 @@ public final class NavigationHolder {
         return INSTANCE;
     }
     
-    public void setPlayers(PlayersLocal players){
-        this.players = players;
+    public void setPlayers(GameMoves gameMoves){
+        this.gameMoves = gameMoves;
     }
     
-    public PlayersLocal getPlayers(){
-        return this.players;
+    public GameMoves getGameMoves(){
+        return this.gameMoves;
     }
 }

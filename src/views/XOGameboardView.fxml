@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="mainPe" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="639.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PlayerVsPlayerLocalViewController">
+<Pane fx:id="mainPe" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="639.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PlayerVsPlayerLocalController">
    <children>
       <GridPane layoutX="160.0" layoutY="74.0" prefHeight="319.0" prefWidth="320.0">
         <columnConstraints>
@@ -143,7 +143,7 @@
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="28.0">
                      <image>
-                        <Image url="@../../Assets/left-arrow.png" />
+                        <Image url="@../Assets/left-arrow.png" />
                      </image>
                   </ImageView>
                </graphic>

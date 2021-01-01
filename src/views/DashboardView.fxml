@@ -5,9 +5,6 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.effect.Light.Distant?>
-<?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -16,11 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="dashboard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashboardController">
+<BorderPane fx:id="dashboard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="730.0" style="-fx-background-color: #F9F9F9; -fx-background-image: url('/Assets/pattern6.png');" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashboardController">
    <left>
-      <ToolBar orientation="VERTICAL" prefHeight="505.0" prefWidth="89.0" BorderPane.alignment="CENTER">
+      <ToolBar orientation="VERTICAL" prefHeight="505.0" prefWidth="89.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <items>
-            <Button fx:id="homeBtn" contentDisplay="TOP" mnemonicParsing="false" onAction="#home" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black;" text="Home" textAlignment="CENTER">
+            <Button fx:id="homeBtn" contentDisplay="TOP" mnemonicParsing="false" onAction="#home" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: #34A3F3;" text="Home" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -28,8 +25,11 @@
                      </image>
                   </ImageView>
                </graphic>
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font>
             </Button>
-            <Button fx:id="recordsBtn" contentDisplay="TOP" mnemonicParsing="false" onAction="#records" prefHeight="78.0" prefWidth="81.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black;" text="Records" textAlignment="CENTER">
+            <Button fx:id="recordsBtn" contentDisplay="TOP" mnemonicParsing="false" onAction="#records" prefHeight="78.0" prefWidth="81.0" style="-fx-background-color: transparent;" text="Records" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -37,8 +37,11 @@
                      </image>
                   </ImageView>
                </graphic>
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font>
             </Button>
-            <Button fx:id="settingsBtn" contentDisplay="TOP" mnemonicParsing="false" onAction="#settings" prefHeight="72.0" prefWidth="82.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black;" text="Settings" textAlignment="CENTER">
+            <Button fx:id="settingsBtn" contentDisplay="TOP" mnemonicParsing="false" onAction="#settings" prefHeight="72.0" prefWidth="82.0" style="-fx-background-color: transparent;" text="Settings" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="24.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -46,8 +49,11 @@
                      </image>
                   </ImageView>
                </graphic>
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font>
             </Button>
-            <Button fx:id="helpBtn" contentDisplay="TOP" mnemonicParsing="false" onAction="#help" prefHeight="73.0" prefWidth="84.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black;" text="Help" textAlignment="CENTER">
+            <Button fx:id="helpBtn" contentDisplay="TOP" mnemonicParsing="false" onAction="#help" prefHeight="73.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="Help" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="58.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -55,8 +61,11 @@
                      </image>
                   </ImageView>
                </graphic>
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font>
             </Button>
-            <Button fx:id="logoutBtn" contentDisplay="TOP" mnemonicParsing="false" onAction="#logout" prefHeight="76.0" prefWidth="84.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black;" text="Logout" textAlignment="CENTER">
+            <Button fx:id="logoutBtn" contentDisplay="TOP" mnemonicParsing="false" onAction="#logout" prefHeight="76.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="Logout" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="24.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -66,50 +75,33 @@
                </graphic>
             </Button>
          </items>
-         <effect>
-            <Lighting diffuseConstant="1.59" specularConstant="0.0" surfaceScale="0.0">
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant color="#0abde3" elevation="42.91" />
-               </light>
-            </Lighting>
-         </effect>
       </ToolBar>
    </left>
    <top>
-      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <items>
-            <Region prefHeight="41.0" prefWidth="221.0" />
+            <Region prefHeight="41.0" prefWidth="316.0" />
             <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Assets/star.png" />
                </image>
             </ImageView>
-            <Label prefHeight="32.0" prefWidth="71.0" text="530 XP">
+            <Label prefHeight="32.0" prefWidth="81.0" text="530 XP">
                <font>
-                  <Font size="22.0" />
+                  <Font name="Comic Sans MS" size="22.0" />
                </font>
             </Label>
-            <Region prefHeight="30.0" prefWidth="240.0" />
-            <Label text="HI, Saeed" />
+            <Region prefHeight="41.0" prefWidth="169.0" />
+            <Label text="HI, Saeed">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font></Label>
             <ImageView fitHeight="41.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Assets/—Pngtree—vector%20users%20icon_4144740.png" />
                </image>
             </ImageView>
          </items>
-         <effect>
-            <Lighting diffuseConstant="1.54" specularConstant="0.0" surfaceScale="0.0">
-               <bumpInput>
-                  <Shadow height="15.065654296875" radius="7.03391357421875" width="15.07" />
-               </bumpInput>
-               <light>
-                  <Light.Distant color="#55d0e9" />
-               </light>
-            </Lighting>
-         </effect>
       </ToolBar>
    </top>
    <center>
@@ -127,7 +119,10 @@
                         <RadioButton fx:id="playerVsMachine" mnemonicParsing="false" text="Player Vs Machine">
                            <toggleGroup>
                               <ToggleGroup fx:id="playingMode" />
-                           </toggleGroup></RadioButton>
+                           </toggleGroup>
+                           <font>
+                              <Font name="Comic Sans MS Bold" size="14.0" />
+                           </font></RadioButton>
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" layoutX="691.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
@@ -137,7 +132,10 @@
                               <Image url="@../Assets/circle-cropped.png" />
                            </image>
                         </ImageView>
-                        <RadioButton fx:id="local" mnemonicParsing="false" text="Multiple Players" toggleGroup="$playingMode" />
+                        <RadioButton fx:id="local" mnemonicParsing="false" text="Multiple Players" toggleGroup="$playingMode">
+                           <font>
+                              <Font name="Comic Sans MS Bold" size="14.0" />
+                           </font></RadioButton>
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" layoutX="768.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
@@ -147,14 +145,20 @@
                               <Image url="@../Assets/playerVsplayerOnline.png" />
                            </image>
                         </ImageView>
-                        <RadioButton fx:id="online" mnemonicParsing="false" text="Online" toggleGroup="$playingMode" />
+                        <RadioButton fx:id="online" mnemonicParsing="false" text="Online" toggleGroup="$playingMode">
+                           <font>
+                              <Font name="Comic Sans MS Bold" size="14.0" />
+                           </font></RadioButton>
                      </children>
                   </VBox>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="116.0" prefWidth="538.0">
                <children>
-                  <Button fx:id="letsPlayBtn" mnemonicParsing="false" onAction="#loadGamePlay" prefHeight="58.0" prefWidth="114.0" style="-fx-background-color: transparent; -fx-border-color: #0abde3; -fx-border-width: 2px; -fx-border-radius: 5px;" text="Lets Play" />
+                  <Button fx:id="letsPlayBtn" mnemonicParsing="false" onAction="#loadGamePlay" prefHeight="58.0" prefWidth="114.0" style="-fx-background-color: transparent; -fx-border-color: #34A3F3; -fx-border-width: 2px; -fx-border-radius: 5px;" text="Lets Play">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="17.0" />
+                     </font></Button>
                </children>
             </HBox>
          </children>

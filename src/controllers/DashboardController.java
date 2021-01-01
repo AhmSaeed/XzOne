@@ -66,28 +66,28 @@ public class DashboardController implements Initializable {
 
     @FXML
     private void home(ActionEvent event) {
-        homeBtn.setStyle("-fx-background-color:white");
+        homeBtn.setStyle("-fx-background-color: #34A3F3");
         changeBtnsBackground(settingsBtn, recordsBtn, helpBtn, logoutBtn);
         dashboard.setCenter(body);
     }
 
     @FXML
     private void records(ActionEvent event) {
-        recordsBtn.setStyle("-fx-background-color:white");
+        recordsBtn.setStyle("-fx-background-color: #34A3F3");
         changeBtnsBackground(homeBtn, settingsBtn, helpBtn, logoutBtn);
-
+        navigatePages("/views/RecordsView.fxml");
     }
 
     @FXML
     private void settings(ActionEvent event) {
-        settingsBtn.setStyle("-fx-background-color:white");
+        settingsBtn.setStyle("-fx-background-color: #34A3F3");
         changeBtnsBackground(homeBtn, recordsBtn, helpBtn, logoutBtn);
         navigatePages("/views/SettingView.fxml");
     }
 
     @FXML
     private void help(ActionEvent event) {
-        helpBtn.setStyle("-fx-background-color:white");
+        helpBtn.setStyle("-fx-background-color: #34A3F3");
         changeBtnsBackground(homeBtn, settingsBtn, recordsBtn, logoutBtn);
         navigatePages("/views/HelpView.fxml");
     }
@@ -118,8 +118,9 @@ public class DashboardController implements Initializable {
     @FXML
     private void loadGamePlay(ActionEvent event) {
         if (playerVsMachine.isSelected()) {
-            navigatePages("/views/PlayerVsMachineFormView.fxml");
-        } else if (local.isSelected()) {
+            navigatePages("/views/PlayerVsMachineFormView.fxml");   
+        }
+        else if (local.isSelected()) {
             navigatePages("/views/PlayerVsPlayerLocalFormView.fxml");
         }
         else if (online.isSelected()) {
