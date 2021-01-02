@@ -111,6 +111,7 @@ public class PlayerVsPlayerLocalController extends PlayerVSPlayerLocalAbstract i
         totalScoreLeftLBL.setText("X");
         totalScoreRightLBL.setText("O");
         randomPlayerNo = chooseRandomPlayer(2);
+        gameMoves.setStartedBy(randomPlayerNo + 1);
         iterationRightSQ.setVisible(randomPlayerNo == 1);
         iterationLeftSQ.setVisible(randomPlayerNo == 0);
     }    
@@ -204,6 +205,7 @@ public class PlayerVsPlayerLocalController extends PlayerVSPlayerLocalAbstract i
             button.setText("O");
         }
         gameMoves.addMove(gameMoves.convert2DIndexesTo1D(x, y));
+        gameMoves.setTwoPlayers(player1, player2);
         gameCounter++;
         flipRound();
     }

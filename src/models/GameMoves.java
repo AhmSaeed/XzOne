@@ -16,6 +16,7 @@ public class GameMoves implements Serializable {
     private Player playerOne;
     private Player playerTwo;
     private int [] moves;
+    private int startedBy;
     private int counter;
     
     public GameMoves(){
@@ -42,6 +43,10 @@ public class GameMoves implements Serializable {
     public void setPlayerTwo(Player PlayerTwo) {
         this.playerTwo = PlayerTwo;
     }
+    
+    public void setStartedBy(int startedBy) {
+        this.startedBy = startedBy;
+    }
 
     public Player getPlayerOne() {
         return playerOne;
@@ -53,6 +58,10 @@ public class GameMoves implements Serializable {
     
     public int[] getMoves() {
         return moves;
+    }
+    
+    public int getStartedBy() {
+        return startedBy;
     }
     
     public void setMoves(int [] moves){
