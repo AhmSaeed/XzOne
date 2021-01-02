@@ -5,7 +5,9 @@
  */
 package xzone;
 
+import controllers.AvailablePlayersController;
 import java.io.DataInputStream;
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -30,7 +32,9 @@ public class Client extends Thread {
     public static ObjectOutputStream objectOutputStream;
     public static boolean isRegistered;
     public static boolean isLogged;
+    public static boolean getAvailablePlayers = false;
     public static String playerName;
+    public static ArrayList<String> availablePlayersList;
     //static DataInputStream dis;
     //static PrintStream ps;
 
@@ -38,11 +42,9 @@ public class Client extends Thread {
         try {
 
             System.out.println("dddd");
-            socket = new Socket("127.0.0.1", 5000);
+            socket = new Socket(ip, 5000);
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectInputStream = new ObjectInputStream(socket.getInputStream());
-            //dis=new DataInputStream(socket.getInputStream());
-            //System.out.println(dis.readLine());
             return true;
         } catch (ConnectException ex) {
             System.out.println("serverOFF");
@@ -60,63 +62,82 @@ public class Client extends Thread {
 
             @Override
             public void run() {
-                try {
-                    message = (ArrayList<String>) objectInputStream.readObject();
-                    if (message.get(0).equals(Constants.REGISTER)) {
-                        if (message.get(1).equals(Constants.YOU_ARA_REGISTER)) {
-                            isRegistered = true;
-                        } else {
-                            isRegistered = false;
-                            Platform.runLater(() -> {
-                                Alert alert = new Alert(Alert.AlertType.WARNING);
-                                alert.setTitle("Register");
-                                alert.setHeaderText("Register Failure");
-                                alert.setContentText("this name is already used try another one!!");
-                                alert.showAndWait();
-                            });
-                        }
-                    } else if (message.get(0).equals(Constants.LOGIN)) {
-                        message = (ArrayList<String>) objectInputStream.readObject();
-                        if (message.get(1).equals(Constants.YOU_LOGED_IN)) {
-                            isLogged = true;
-                        } else {
-                            isLogged = false;
-                            Platform.runLater(() -> {
-                                Alert alert = new Alert(Alert.AlertType.WARNING);
-                                alert.setTitle("Login");
-                                alert.setHeaderText("Login Failure");
-                                alert.setContentText("your userName or password is wrong or you are aleady loged in from another device!!");
-                                alert.showAndWait();
-                            });
-                        }
-                    }
-
-                } catch (SocketException ex) {
-                    Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                while (true) {
                     try {
-                        socket.close();
-                        objectInputStream.close();
-                        objectInputStream.close();
+                        message = (ArrayList<String>) objectInputStream.readObject();
+                        if (message.get(0).equals(Constants.REGISTER)) {
+                            if (message.get(1).equals(Constants.YOU_ARA_REGISTER)) {
+                                isRegistered = true;
+                            } else {
+                                isRegistered = false;
+                                Platform.runLater(() -> {
+                                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                                    alert.setTitle("Register");
+                                    alert.setHeaderText("Register Failure");
+                                    alert.setContentText("this name is already used try another one!!");
+                                    alert.showAndWait();
+                                });
+                            }
+                        } else if (message.get(0).equals(Constants.LOGIN)) {
+                            //message = (ArrayList<String>) objectInputStream.readObject();
+                            if (message.get(1).equals(Constants.YOU_LOGED_IN)) {
+                                isLogged = true;
+                            } else {
+                                isLogged = false;
+                                Platform.runLater(() -> {
+                                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                                    alert.setTitle("Login");
+                                    alert.setHeaderText("Login Failure");
+                                    alert.setContentText("your userName or password is wrong or you are aleady loged in from another device!!");
+                                    alert.showAndWait();
+                                });
+                            }
+                            System.out.println("aP" + playerName);
+                        } else if (message.get(0).equals(Constants.AVAILABLE_PLAYERS)) {
+                            System.out.println("aP is send from server");
+                            availablePlayersList = new ArrayList<>();
+                            availablePlayersList.clear();
+                            message.remove(0);
+                            //get list of available players names
+                            for (String name : message) {
+//                                if (!playerName.equals(name)) {
+                                    availablePlayersList.add(name);
+//                                }
+                            }
+                            
+                            getAvailablePlayers = true;
+                            
+                            System.out.println("aP is send from server"+availablePlayersList);
+                        }
+
+                    } catch (EOFException ex) {
+                        Platform.runLater(() -> {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Information Dialog");
+                            alert.setContentText("YOU LOGED OUT");
+                            alert.showAndWait();
+                        });
                         stop();
-                    } catch (IOException ex1) {
-                        Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex1);
+
+                    } catch (SocketException ex) {
+                        Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                        try {
+                            socket.close();
+                            objectInputStream.close();
+                            objectInputStream.close();
+                            stop();
+                        } catch (IOException ex1) {
+                            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex1);
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } catch (IOException ex) {
-                    Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+
                 }
-
             }
-
         }.start();
     }
-//    public static boolean isLogged(ArrayList<String> message){
-//        if(message.get(1).equals("you loged in")){
-//            return true;
-//        }else{
-//            return false;
-//        }
-//    }
 
 }

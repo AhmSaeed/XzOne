@@ -18,7 +18,7 @@
       <ListView fx:id="availablePlayersListView" prefHeight="200.0" prefWidth="200.0" />
       <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="13.0">
          <children>
-            <Button fx:id="refreshBtn" mnemonicParsing="false" prefHeight="42.0" prefWidth="110.0" text="Refresh">
+            <Button fx:id="refreshBtn" mnemonicParsing="false" onAction="#refeshAvialablePlayers" prefHeight="42.0" prefWidth="110.0" text="Refresh">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
