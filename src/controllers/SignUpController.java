@@ -63,35 +63,27 @@ public class SignUpController implements Initializable {
 
     @FXML
     private void submit(ActionEvent event) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                register();
-                if (Client.isRegistered) {
-                    Client.playerName=userNameTf.getText();
-                    final Parent root;
-                    try {
-                        root = FXMLLoader.load(getClass().getResource("/views/AvailablePlayersView.fxml"));
-                        Platform.runLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                ((BorderPane) submitBtn.getScene().getRoot()).setCenter(root);
-                            }
-                        });
-                    } catch (IOException ex) {
-                        Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
 
-               }
+        register();
+        if (Client.isRegistered) {
+            Client.playerName = userNameTf.getText();
+            final Parent root;
+            try {
+                root = FXMLLoader.load(getClass().getResource("/views/AvailablePlayersView.fxml"));
+
+                ((BorderPane) submitBtn.getScene().getRoot()).setCenter(root);
+
+            } catch (IOException ex) {
+                Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
 //                else {
 //                    Platform.runLater(() -> {
 //                        userNameLbl.setText("user name is used");
 //                    });
 
 //                }
-            }
-        }).start();
-
     }
 
     private void register() {
@@ -99,25 +91,24 @@ public class SignUpController implements Initializable {
         information = new ArrayList<String>();
         System.out.println("B4" + information);
         if (userNameTf.getText().equals("") && passwordTf.getText().equals("") && confirmedPasswordTf.getText().equals("")) {
-            Platform.runLater(() -> {
+           
                 userNameLbl.setText("enter your name");
                 passwordLbl.setText("enter your password");
                 confirmPasswordLbl.setText("enter your confirmPassword");
-            });
+            
 
         } else if (!confirmedPasswordTf.getText().equals(passwordTf.getText())) {
-            Platform.runLater(() -> {
+            
                 userNameLbl.setText("");
                 passwordLbl.setText("");
                 confirmPasswordLbl.setText("confirmPassword must be as password");
-            });
+           
 
         } else {
-            Platform.runLater(() -> {
-                userNameLbl.setText("");
-                passwordLbl.setText("");
-                confirmPasswordLbl.setText("");
-            });
+
+            userNameLbl.setText("");
+            passwordLbl.setText("");
+            confirmPasswordLbl.setText("");
 
             information.add(Constants.WANT_TO_REGISTER);
             information.add(userNameTf.getText());

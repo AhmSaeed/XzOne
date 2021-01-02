@@ -23,7 +23,7 @@
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="logoutBtn" mnemonicParsing="false" prefHeight="42.0" prefWidth="110.0" text="Logout">
+            <Button fx:id="playBtn" mnemonicParsing="false" onAction="#sendPlayRequrest" prefHeight="42.0" prefWidth="110.0" text="Play">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
                </font>

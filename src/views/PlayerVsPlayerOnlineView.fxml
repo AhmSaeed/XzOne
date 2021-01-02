@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="630.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane layoutX="187.0" layoutY="166.0" prefHeight="250.0" prefWidth="250.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="cell1Btn" mnemonicParsing="false" onAction="#handlePlaying" prefHeight="184.0" prefWidth="83.0" style="-fx-background-color: Transparent; -fx-border-width: 0px 2px 2px 0px; -fx-border-color: #000000; -fx-cursor: hand;">
+               <font>
+                  <Font name="Comic Sans MS" size="36.0" />
+               </font>
+            </Button>
+            <Button fx:id="cell2Btn" mnemonicParsing="false" onAction="#handlePlaying" prefHeight="84.0" prefWidth="152.0" style="-fx-background-color: Transparent; -fx-border-width: 0px 2px 2px 2px; -fx-border-color: #000000; -fx-cursor: hand;" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Comic Sans MS" size="36.0" />
+               </font>
+            </Button>
+            <Button fx:id="cell3Btn" mnemonicParsing="false" onAction="#handlePlaying" prefHeight="84.0" prefWidth="239.0" style="-fx-background-color: Transparent; -fx-border-width: 0px 0px 2px 2px; -fx-border-color: #000000;" GridPane.columnIndex="2">
+               <font>
+                  <Font name="Comic Sans MS" size="36.0" />
+               </font>
+            </Button>
+            <Button fx:id="cell4Btn" mnemonicParsing="false" onAction="#handlePlaying" prefHeight="127.0" prefWidth="83.0" style="-fx-background-color: Transparent; -fx-border-width: 2px 2px 2px 0px; -fx-border-color: #000000;" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Comic Sans MS" size="36.0" />
+               </font>
+            </Button>
+            <Button fx:id="cell5Btn" mnemonicParsing="false" onAction="#handlePlaying" prefHeight="126.0" prefWidth="83.0" style="-fx-background-color: Transparent; -fx-border-width: 2px 2px 2px 2px; -fx-border-color: #000000;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Comic Sans MS" size="36.0" />
+               </font>
+            </Button>
+            <Button fx:id="cell6Btn" mnemonicParsing="false" onAction="#handlePlaying" prefHeight="83.0" prefWidth="113.0" style="-fx-background-color: Transparent; -fx-border-width: 2px 0px 2px 2px; -fx-border-color: #000000;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Comic Sans MS" size="36.0" />
+               </font>
+            </Button>
+            <Button fx:id="cell7Btn" mnemonicParsing="false" onAction="#handlePlaying" prefHeight="167.0" prefWidth="83.0" style="-fx-background-color: Transparent; -fx-border-width: 2px 2px 0px 0px; -fx-border-color: #000000;" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Comic Sans MS" size="36.0" />
+               </font>
+            </Button>
+            <Button fx:id="cell8Btn" mnemonicParsing="false" onAction="#handlePlaying" prefHeight="83.0" prefWidth="131.0" style="-fx-background-color: Transparent; -fx-border-width: 2px 2px 0px 2px; -fx-border-color: #000000;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Comic Sans MS" size="36.0" />
+               </font>
+            </Button>
+            <Button fx:id="cell9Btn" mnemonicParsing="false" onAction="#handlePlaying" prefHeight="83.0" prefWidth="129.0" style="-fx-background-color: Transparent; -fx-border-width: 2px 0px 0px 2px; -fx-border-color: #000000;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Comic Sans MS" size="36.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+      <HBox alignment="CENTER" layoutY="530.0" prefHeight="92.0" prefWidth="630.0" spacing="10.0" style="-fx-background-color: #FAFAFA;">
+         <children>
+            <ImageView fx:id="avatarLeftIV" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/—Pngtree—vector%20users%20icon_4144740.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER_RIGHT" prefHeight="71.0" prefWidth="100.0">
+               <children>
+                  <Rectangle fx:id="playerTurnRect" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" stroke="BLACK" strokeType="INSIDE" width="21.0" />
+                  <Label fx:id="playerLbl" prefHeight="23.0" prefWidth="100.0">
+                     <font>
+                        <Font name="Comic Sans MS" size="16.0" />
+                     </font></Label>
+                  <Label fx:id="totalScoreLeftLBL" prefHeight="21.0" prefWidth="100.0" text="#0">
+                     <font>
+                        <Font name="Comic Sans MS" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Label fx:id="gameScoreLeftLbl" text="0" textFill="#ffb300">
+               <font>
+                  <Font name="Comic Sans MS" size="50.0" />
+               </font>
+            </Label>
+            <Label alignment="BOTTOM_CENTER" prefHeight="83.0" prefWidth="39.0" text="vs">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
+               <font>
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font></Label>
+            <Label fx:id="gameScoreRightLbl" text="0" textFill="#00a1ff">
+               <font>
+                  <Font name="Comic Sans MS" size="50.0" />
+               </font>
+            </Label>
+            <VBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="100.0">
+               <children>
+                  <Rectangle fx:id="machineTurnRect" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" stroke="BLACK" strokeType="INSIDE" width="21.0" />
+                  <Label fx:id="machineLbl" alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="100.0">
+                     <font>
+                        <Font name="Comic Sans MS" size="16.0" />
+                     </font></Label>
+                  <Label fx:id="totalScoreRightLBL" alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="100.0" text="#0">
+                     <font>
+                        <Font name="Comic Sans MS" size="16.0" />
+                     </font></Label>
+               </children>
+            </VBox>
+            <ImageView fx:id="avatarRightIV" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/—Pngtree—vector%20users%20icon_4144740.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <ToolBar prefHeight="85.0" prefWidth="630.0" style="-fx-background-color: Transparent;">
+        <items>
+          <Button fx:id="backBtn" mnemonicParsing="false" onAction="#backToUserConfig" prefHeight="0.0" prefWidth="43.0" style="-fx-background-color: #C4C4C4; -fx-cursor: hand;">
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="28.0">
+                     <image>
+                        <Image url="@../Assets/left-arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Region prefHeight="71.0" prefWidth="200.0" />
+            <Button fx:id="startBtn" contentDisplay="CENTER" mnemonicParsing="false" onAction="#startGame" prefHeight="71.0" prefWidth="86.0" style="-fx-background-color: transparent; -fx-cursor: hand;">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/play-button.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+        </items>
+      </ToolBar>
+   </children>
+</Pane>

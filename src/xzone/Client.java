@@ -30,10 +30,11 @@ public class Client extends Thread {
     public static ObjectOutputStream objectOutputStream;
     public static boolean isRegistered;
     public static boolean isLogged;
+    public static boolean isReadyToPlay;
     public static String playerName;
+
     //static DataInputStream dis;
     //static PrintStream ps;
-
     public static boolean connect(String ip) {
         try {
 
@@ -60,53 +61,61 @@ public class Client extends Thread {
 
             @Override
             public void run() {
-                try {
-                    message = (ArrayList<String>) objectInputStream.readObject();
-                    if (message.get(0).equals(Constants.REGISTER)) {
-                        if (message.get(1).equals(Constants.YOU_ARA_REGISTER)) {
-                            isRegistered = true;
-                        } else {
-                            isRegistered = false;
-                            Platform.runLater(() -> {
-                                Alert alert = new Alert(Alert.AlertType.WARNING);
-                                alert.setTitle("Register");
-                                alert.setHeaderText("Register Failure");
-                                alert.setContentText("this name is already used try another one!!");
-                                alert.showAndWait();
-                            });
-                        }
-                    } else if (message.get(0).equals(Constants.LOGIN)) {
-                        message = (ArrayList<String>) objectInputStream.readObject();
-                        if (message.get(1).equals(Constants.YOU_LOGED_IN)) {
-                            isLogged = true;
-                        } else {
-                            isLogged = false;
-                            Platform.runLater(() -> {
-                                Alert alert = new Alert(Alert.AlertType.WARNING);
-                                alert.setTitle("Login");
-                                alert.setHeaderText("Login Failure");
-                                alert.setContentText("your userName or password is wrong or you are aleady loged in from another device!!");
-                                alert.showAndWait();
-                            });
-                        }
-                    }
-
-                } catch (SocketException ex) {
-                    Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                while (true) {
                     try {
-                        socket.close();
-                        objectInputStream.close();
-                        objectInputStream.close();
-                        stop();
-                    } catch (IOException ex1) {
-                        Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex1);
-                    }
-                } catch (IOException ex) {
-                    Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-                }
 
+                        message = (ArrayList<String>) objectInputStream.readObject();
+                        if (message.get(0).equals(Constants.REGISTER)) {
+                            if (message.get(1).equals(Constants.YOU_ARA_REGISTER)) {
+                                isRegistered = true;
+                            } else {
+                                isRegistered = false;
+                                Platform.runLater(() -> {
+                                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                                    alert.setTitle("Register");
+                                    alert.setHeaderText("Register Failure");
+                                    alert.setContentText("this name is already used try another one!!");
+                                    alert.showAndWait();
+                                });
+                            }
+                        } else if (message.get(0).equals(Constants.LOGIN)) {
+                            message = (ArrayList<String>) objectInputStream.readObject();
+                            if (message.get(1).equals(Constants.YOU_LOGED_IN)) {
+                                isLogged = true;
+                            } else {
+                                isLogged = false;
+                                Platform.runLater(() -> {
+                                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                                    alert.setTitle("Login");
+                                    alert.setHeaderText("Login Failure");
+                                    alert.setContentText("your userName or password is wrong or you are aleady loged in from another device!!");
+                                    alert.showAndWait();
+                                });
+                            }
+                        } else if (message.get(0).equals(Constants.WANT_TO_PLAY)) {
+                            System.out.println("The request comes from player " + message.get(1));
+                        } else if (message.get(0).equals(Constants.ACCEPT_PLAYING_REQUEST)) {
+
+                            isReadyToPlay = true;
+
+                        }
+
+                    } catch (SocketException ex) {
+                        Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                        try {
+                            socket.close();
+                            objectInputStream.close();
+                            objectInputStream.close();
+                            stop();
+                        } catch (IOException ex1) {
+                            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex1);
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
 
         }.start();
