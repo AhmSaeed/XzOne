@@ -15,6 +15,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -47,6 +48,11 @@ public class AvailablePlayersController implements Initializable {
         // TODO
         //getAvailablePlayers();
         //updateAvailablePlayersList();
+        availablePlayersListView.setOnMouseClicked((event) -> {
+            System.out.println("clicked on"+availablePlayersListView.getSelectionModel().getSelectedItems());
+            String selecetedPlayer=availablePlayersListView.getSelectionModel().getSelectedItem();
+            sendRequest(selecetedPlayer);
+        });
     }
 
     @FXML
@@ -81,6 +87,21 @@ public class AvailablePlayersController implements Initializable {
                 availablePlayersListView.getItems().addAll(Client.availablePlayersList);
         }
         //Client.availablePlayersList=new ArrayList<>();
+    }
+    private void sendRequest(String selecetedPlayer) {
+        System.out.println(selecetedPlayer);
+
+        ArrayList<String> information = new ArrayList<String>();
+        information.add(Constants.WANT_TO_PLAY);
+        information.add(selecetedPlayer);
+        information.add(Client.playerName);
+        System.out.println("send request"+information);
+        try {
+            Client.objectOutputStream.writeObject(information);
+            Client.objectOutputStream.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(AvailablePlayersController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

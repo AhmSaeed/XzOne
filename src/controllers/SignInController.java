@@ -76,34 +76,21 @@ public class SignInController implements Initializable {
     @FXML
     private void goToAvailablePlayerScreen(ActionEvent event) {
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+
                 login();
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
-                }
                 if (Client.isLogged) {
                     Client.playerName=userName.getText();
                     final Parent root;
                     try {
                         root = FXMLLoader.load(getClass().getResource("/views/AvailablePlayersView.fxml"));
-                        Platform.runLater(new Runnable() {
-                            @Override
-                            public void run() {
+                       
                                 ((BorderPane) loginBtn.getScene().getRoot()).setCenter(root);
-                            }
-                        });
+                           
                     } catch (IOException ex) {
                         Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
                 }
-
-            }
-        }).start();
     }
 
     private void login() {

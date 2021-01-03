@@ -16,10 +16,12 @@ import java.net.ConnectException;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 /**
  *
@@ -34,10 +36,12 @@ public class Client extends Thread {
     public static boolean isLogged;
     public static boolean getAvailablePlayers = false;
     public static String playerName;
+    public static String opponentName;
     public static ArrayList<String> availablePlayersList;
     //static DataInputStream dis;
     //static PrintStream ps;
-
+    public static boolean isReadyToPlay;
+     
     public static boolean connect(String ip) {
         try {
 
@@ -59,6 +63,7 @@ public class Client extends Thread {
         new Thread() {
 //            String sendData = "hello client";
             ArrayList<String> message = new ArrayList<>();
+            
 
             @Override
             public void run() {
@@ -108,6 +113,53 @@ public class Client extends Thread {
                             getAvailablePlayers = true;
                             
                             System.out.println("aP is send from server"+availablePlayersList);
+                        }else if(message.get(0).equals(Constants.WANT_TO_PLAY)){
+                            opponentName=message.get(1);
+                            playerName=message.get(2);
+                            System.out.println(message.get(2)+"want to play with "+message.get(1));
+                            Platform.runLater(()->{
+                                Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
+                                alert.setTitle("confirmation Dialog");
+                                alert.setHeaderText("Do you accept chaleenge with "+message.get(2));
+                                alert.setContentText("Are you ok with this challenge?");
+                                Optional<ButtonType> result = alert.showAndWait();
+                                System.out.println(result.get().getText());
+                                ArrayList<String>information=new ArrayList<>();
+                                if(result.get().getText().equals("OK")){
+                                    System.out.println(opponentName+" "+playerName);
+                                    information.add(Constants.ACCEPT_PLAYING_REQUEST);
+                                    information.add(opponentName);
+                                    information.add(playerName);
+                                    try {
+                                        objectOutputStream.writeObject(information);
+                                        objectOutputStream.flush();
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }else{
+                                    System.out.println(opponentName+" "+playerName);
+                                    information.add(Constants.REJECT_PLAYING_REQUEST);
+                                    information.add(opponentName);
+                                    information.add(playerName);
+                                    try {
+                                        objectOutputStream.writeObject(information);
+                                        objectOutputStream.flush();
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                            });
+                            
+                        }else if(message.get(0).equals(Constants.ACCEPT_PLAYING_REQUEST)){
+                            System.out.println("xo game is oppened");
+                        }else if(message.get(0).equals(Constants.REJECT_PLAYING_REQUEST)){
+                            Platform.runLater(() -> {
+                                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                                    alert.setTitle("request is rejected");
+                                    alert.setHeaderText("request is rejected");
+                                    alert.setContentText("your opponent "+message.get(2)+" reject your request");
+                                    alert.showAndWait();
+                                });
                         }
 
                     } catch (EOFException ex) {
