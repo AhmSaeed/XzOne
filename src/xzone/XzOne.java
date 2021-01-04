@@ -26,7 +26,7 @@ public class XzOne extends Application {
         stage.show();
         //new Client();
     }
-
+    
     /**
      * @param args the command line arguments
      */
