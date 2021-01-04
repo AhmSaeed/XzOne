@@ -23,6 +23,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import xzone.Client;
+import xzone.DashBoardHolder;
 
 /**
  * FXML Controller class
@@ -64,6 +65,8 @@ public class DashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         //new Client();
+        
+        DashBoardHolder.setDashBoard(dashboard);
     }
 
     @FXML

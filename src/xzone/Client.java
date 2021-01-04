@@ -20,6 +20,8 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
@@ -41,7 +43,7 @@ public class Client extends Thread {
     //static DataInputStream dis;
     //static PrintStream ps;
     public static boolean isReadyToPlay;
-     
+
     public static boolean connect(String ip) {
         try {
 
@@ -63,7 +65,6 @@ public class Client extends Thread {
         new Thread() {
 //            String sendData = "hello client";
             ArrayList<String> message = new ArrayList<>();
-            
 
             @Override
             public void run() {
@@ -72,6 +73,8 @@ public class Client extends Thread {
                         message = (ArrayList<String>) objectInputStream.readObject();
                         if (message.get(0).equals(Constants.REGISTER)) {
                             if (message.get(1).equals(Constants.YOU_ARA_REGISTER)) {
+                                System.out.println("player name "+message.get(2));
+                                System.out.println("player score "+message.get(3));
                                 isRegistered = true;
                             } else {
                                 isRegistered = false;
@@ -86,6 +89,8 @@ public class Client extends Thread {
                         } else if (message.get(0).equals(Constants.LOGIN)) {
                             //message = (ArrayList<String>) objectInputStream.readObject();
                             if (message.get(1).equals(Constants.YOU_LOGED_IN)) {
+                                System.out.println("player name "+message.get(2));
+                                System.out.println("player score "+message.get(3));
                                 isLogged = true;
                             } else {
                                 isLogged = false;
@@ -106,27 +111,27 @@ public class Client extends Thread {
                             //get list of available players names
                             for (String name : message) {
 //                                if (!playerName.equals(name)) {
-                                    availablePlayersList.add(name);
+                                availablePlayersList.add(name);
 //                                }
                             }
-                            
+
                             getAvailablePlayers = true;
-                            
-                            System.out.println("aP is send from server"+availablePlayersList);
-                        }else if(message.get(0).equals(Constants.WANT_TO_PLAY)){
-                            opponentName=message.get(1);
-                            playerName=message.get(2);
-                            System.out.println(message.get(2)+"want to play with "+message.get(1));
-                            Platform.runLater(()->{
-                                Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
+
+                            System.out.println("aP is send from server" + availablePlayersList);
+                        } else if (message.get(0).equals(Constants.WANT_TO_PLAY)) {
+                            opponentName = message.get(1);
+                            playerName = message.get(2);
+                            System.out.println(message.get(2) + "want to play with " + message.get(1));
+                            Platform.runLater(() -> {
+                                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                                 alert.setTitle("confirmation Dialog");
-                                alert.setHeaderText("Do you accept chaleenge with "+message.get(2));
+                                alert.setHeaderText("Do you accept chaleenge with " + message.get(2));
                                 alert.setContentText("Are you ok with this challenge?");
                                 Optional<ButtonType> result = alert.showAndWait();
                                 System.out.println(result.get().getText());
-                                ArrayList<String>information=new ArrayList<>();
-                                if(result.get().getText().equals("OK")){
-                                    System.out.println(opponentName+" "+playerName);
+                                ArrayList<String> information = new ArrayList<>();
+                                if (result.get().getText().equals("OK")) {
+                                    System.out.println(opponentName + " " + playerName);
                                     information.add(Constants.ACCEPT_PLAYING_REQUEST);
                                     information.add(opponentName);
                                     information.add(playerName);
@@ -136,8 +141,8 @@ public class Client extends Thread {
                                     } catch (IOException ex) {
                                         Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
                                     }
-                                }else{
-                                    System.out.println(opponentName+" "+playerName);
+                                } else {
+                                    System.out.println(opponentName + " " + playerName);
                                     information.add(Constants.REJECT_PLAYING_REQUEST);
                                     information.add(opponentName);
                                     information.add(playerName);
@@ -149,17 +154,43 @@ public class Client extends Thread {
                                     }
                                 }
                             });
-                            
-                        }else if(message.get(0).equals(Constants.ACCEPT_PLAYING_REQUEST)){
-                            System.out.println("xo game is oppened");
-                        }else if(message.get(0).equals(Constants.REJECT_PLAYING_REQUEST)){
+
+                        } else if (message.get(0).equals(Constants.ACCEPT_PLAYING_REQUEST)) {
+                            System.out.println("hello from accept playing request");
+                            ArrayList<String> openGamePacket = new ArrayList<String>();
+                            openGamePacket.add(Constants.OPEN_GAME_INFORM);
+                            openGamePacket.add(message.get(2));
+                            openGamePacket.add(message.get(1));
+                            Client.objectOutputStream.writeObject(openGamePacket);
                             Platform.runLater(() -> {
-                                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                                    alert.setTitle("request is rejected");
-                                    alert.setHeaderText("request is rejected");
-                                    alert.setContentText("your opponent "+message.get(2)+" reject your request");
-                                    alert.showAndWait();
-                                });
+
+                                try {
+                                    Parent root = FXMLLoader.load(getClass().getResource("/views/PlayerVsMachineFormView.fxml"));
+                                    DashBoardHolder.getDashBoard().setCenter(root);
+                                } catch (IOException ex) {
+                                    Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            });
+
+                        } else if (message.get(0).equals(Constants.REJECT_PLAYING_REQUEST)) {
+                            Platform.runLater(() -> {
+                                Alert alert = new Alert(Alert.AlertType.WARNING);
+                                alert.setTitle("request is rejected");
+                                alert.setHeaderText("request is rejected");
+                                alert.setContentText("your opponent " + message.get(2) + " reject your request");
+                                alert.showAndWait();
+                            });
+                        } else if (message.get(0).equals(Constants.OPEN_GAME_INFORM)){
+                            System.out.println("Hello from the other side");
+                            Platform.runLater(() -> {
+                                try {
+                                    Parent root = FXMLLoader.load(getClass().getResource("/views/PlayerVsMachineFormView.fxml"));
+                                    DashBoardHolder.getDashBoard().setCenter(root);
+                                } catch (IOException ex) {
+                                    Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            });
+
                         }
 
                     } catch (EOFException ex) {
